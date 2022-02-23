@@ -10,11 +10,18 @@ router.get('/movies/:movieid', function(req,res){
 
     let movi=["heropanti","titanic","spiderMan","ironman","Dabang"]
     let num = req.params.movieid
-    if(num>movi.length-1){
+
+    if(num > movi.length-1){
         res.send("invalid input")
     }else{
         res.send(movi[num])
     }
+
+})
+
+router.get('/films', function (req ,res){
+
+    res.send([ {id: 1, name: 'The Shining'}, {id: 2, name: 'Incendies'}, {id: 3,name: 'Rang de Basanti'}, {id: 4, name: 'Finding Demo'}])
 })
 
 router.get('/films/:filmid', function(req,res){
