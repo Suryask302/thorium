@@ -44,8 +44,46 @@ const createBook= async function (req, res) {
 }
 
 
+
+
+const updateBook = async function (req ,res){
+
+    let publisherID = await publisherModel.find(
+        { name : { $in : ['HarperCollins' , 'Penguin'] } } ).select( {_id:1} )
+
+    console.log(publisherID)
+
+    let ListOfBk = await bookModel.updateMany(
+
+        { publisher : {$in : publisherID} },
+        { $set : {isHardCover : true } },
+        { new : true }
+
+            )
+            console.log(ListOfBk)
+
+
+    let authorId = await authorModel.find(
+        { ratings : { $gt : 3.5 } }  ).select( { _id:1 } )
+
+    let updatedPrice = await bookModel.updateMany( 
+        
+        { author : { $in : authorId } },
+        { $inc : {price:+10} },
+        { new : true}
+         
+        )
+    res.send(updatedPrice)
+    
+}
+
+
+
 module.exports.createBook= createBook
 module.exports.getBooks= getBooks
+module.exports.updateBook = updateBook
+
+
 
 
 
