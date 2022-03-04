@@ -53,27 +53,27 @@ const updateBook = async function (req ,res){
 
     console.log(publisherID)
 
-    let ListOfBk = await bookModel.updateMany(
+    // let ListOfBk = await bookModel.updateMany(
 
-        { publisher : {$in : publisherID} },
-        { $set : {isHardCover : true } },
-        { new : true }
+    //     { publisher : {$in : publisherID} },
+    //     { $set : {isHardCover : true } },
+    //     { new : true }
 
-            )
-            console.log(ListOfBk)
+    //         )
+    //         console.log(ListOfBk)
 
 
-    let authorId = await authorModel.find(
-        { ratings : { $gt : 3.5 } }  ).select( { _id:1 } )
+    // let authorId = await authorModel.find(
+    //     { ratings : { $gt : 3.5 } }  ).select( { _id:1 } )
 
-    let updatedPrice = await bookModel.updateMany( 
+    // let updatedPrice = await bookModel.updateMany( 
         
-        { author : { $in : authorId } },
-        { $inc : {price:+10} },
-        { new : true}
+    //     { author : { $in : authorId } },
+    //     { $inc : {price:+10} },
+    //     { new : true}
          
-        )
-    res.send(updatedPrice)
+    //     )
+    // res.send(updatedPrice)
     
 }
 
