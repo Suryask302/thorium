@@ -1,17 +1,15 @@
 
-const GM = require('../middleware/globalmd')
+
 const express = require('express');
 const router = express.Router();
-
-const userController= require("../controllers/userController")
-const productController= require("../controllers/productController");
-const orderController = require("../controllers/orderController")
-const { GB } = require('../middleware/globalmd');
+const userController = require("../controllers/userController")
+const GB = require("../Middleware/Auth")
 
 
-
-router.post("/createUser",GM.GB, userController.createUser)
-router.post("/createProduct", productController.createProduct)
-router.post("/createOrder",GM.GB ,orderController.createOrder)
+router.post("/users", userController.createUser)
+router.post("/login", userController.loginUser)
+router.get("/users/:userId", GB.GB, userController.getUserData)
+router.put("/users/:userId", GB.GB, userController.updateUser)
+router.delete("/users/:userId", GB.GB, userController.deleteUser)
 
 module.exports = router;
