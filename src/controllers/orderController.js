@@ -47,7 +47,7 @@ const createOrder = async function (req , res){
         let price = product.price
 
         if(user.balance < price ){
-            res.send("user Dosent Have Enough Balance")
+          return res.send("user Dosent Have Enough Balance")
         }
 
         let updateUserBalance = await userModel.findOneAndUpdate( {_id : userID } , {$inc : {balance : -price}} , {new : true})
