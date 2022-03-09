@@ -12,6 +12,10 @@ const userSchema = new mongoose.Schema({
     gender: String,
     isDeleted: Boolean,
     age: Number,
+    posts: {
+        type: [],
+        deafult: []
+    }
 
 
 }, { timestamps: true });
