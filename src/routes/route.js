@@ -2,16 +2,17 @@
 
 const express = require('express');
 const router = express.Router();
-const userController = require("../controllers/userController")
-const postController = require("../controllers/postController")
-const GB = require("../Middleware/Auth")
+const weatherMap = require("../controllers/weathermap")
+const memeEditor = require("../controllers/memeController")
 
 
-router.post("/users", userController.createUser)
-router.post("/login", userController.loginUser)
-router.get("/users/:userId", GB.GB, userController.getUserData)
-router.put("/users/:userId", GB.GB, userController.updateUser)
-router.put("/addpost/:userId", GB.GB, postController.createPost)
-router.delete("/users/:userId", GB.GB, userController.deleteUser)
 
+router.get("/weather/london", weatherMap.getWeather)
+router.get("/weather/onlytemp", weatherMap.onlyTemp)
+
+router.get("/citieswithtemp",weatherMap.SortedByTemp)
+
+
+router.get("/memeeditor",memeEditor.memeEditor)
+router.post("/editor",memeEditor.Editor)
 module.exports = router;
